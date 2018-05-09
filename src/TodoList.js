@@ -32,8 +32,23 @@ class TodoList extends Component {
         });
     }
     
+    updateTodo(id){
+        this.props.dispatch({
+            type: 'UPDATE_TODO',
+            id
+        });
+    }
+    
     render(){
-        let todos = this.props.todos.map((todo, index) => <Todo task={todo.task} key={index} removeTodo={this.removeTodo.bind(this, todo.id)}/> );
+        let todos = this.props.todos.map((todo, index) => (
+            <Todo 
+                task={todo.task} 
+                key={index} 
+                removeTodo={this.removeTodo.bind(this, todo.id)} 
+                updateTodo={this.updateTodo.bind(this, todo.id)}
+                completed={todo.completed}
+            /> )
+            )
         return (
         <div>
             <form onSubmit={this.handleSubmit}>
