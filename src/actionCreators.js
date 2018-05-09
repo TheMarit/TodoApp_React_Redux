@@ -9,3 +9,7 @@ export function addTodo(task){
 export function removeTodo(id){
     return {type: REMOVE_TODO, id: id};
 }
+
+export function updateTodo(id){
+    return {type: UPDATE_TODO, id: id};
+}
