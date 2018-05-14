@@ -15,7 +15,7 @@ function handleRemove(id){
     return {type: REMOVE_TODO, id: id};
 }
 
-function handleUpdate(id){
+function handleUpdate(id, completed){
     return {type: UPDATE_TODO, id: id};
 }
 
@@ -54,10 +54,14 @@ export function removeTodo(id) {
     };
 }
 
-export function updateTodo(id) {
+export function updateTodo(id, completed) {
     return dispatch => {
         return fetch(`/api/todos/${id}`, {
-            method: 'PUT'
+            method: 'PUT',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({completed: !completed})
         })
             .then(res => res.json())
             .then(data => dispatch(handleUpdate(id)))

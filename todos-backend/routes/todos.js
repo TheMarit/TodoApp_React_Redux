@@ -20,6 +20,13 @@ router.delete('/:id', function(req, res, next){
         .catch(err => next(err));
 });
 
+router.put('/:id', function(req, res, next){
+    console.log('req.body:');
+    console.log(req.body);
+    Todo.findOneAndUpdate({'_id': req.params.id}, req.body, {new:true})
+        .then(todo => res.send(todo))
+        .catch(err => next(err));
+});
 
 
 module.exports = router;

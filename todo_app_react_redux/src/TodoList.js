@@ -23,8 +23,8 @@ class TodoList extends Component {
         this.props.removeTodo(id);
     }
     
-    updateTodo(id){
-        this.props.updateTodo(id);
+    updateTodo(id, completed){
+        this.props.updateTodo(id, completed);
     }
     
     render(){
@@ -33,7 +33,7 @@ class TodoList extends Component {
                 task={todo.task}
                 key={todo._id} 
                 removeTodo={this.removeTodo.bind(this, todo._id)} 
-                updateTodo={this.updateTodo.bind(this, todo._id)}
+                updateTodo={this.updateTodo.bind(this, todo._id, todo.completed)}
                 completed={todo.completed}
             /> }
             );
